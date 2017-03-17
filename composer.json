@@ -1,0 +1,26 @@
+{
+    "name": "bailangzhan/yii2-swiftmailer",
+    "description": "yii2邮件处理类",
+    "keywords": ["yii2", "swiftmailer", "mailer"],
+    "type": "yii2-extension",
+    "license": "BSD-3",
+    "support": {
+        "issues": "https://github.com/bailangzhan/yii2-swiftmailer/issues",
+        "source": "https://github.com/bailangzhan/yii2-swiftmailer",
+        "homepage": "http://www.manks.top"
+    },
+    "authors": [
+        {
+            "name": "manks",
+            "email": "422744746@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": ">=2.0.6",
+        "yiisoft/yii2-swiftmailer": "*"
+    },
+    "autoload": {
+        "psr-4": { "bailangzhan\\": "" }
+    }
+}
