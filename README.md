@@ -50,7 +50,7 @@ $ php composer.phar require bailangzhan/yii2-swiftmailer "@dev"
 #### 发送一封邮件
 
 ```php
-use bailangzhan\swiftmailer\Mailer;
+use bailangzhan\Mailer;
 $message = [
     'to' => '要发送给谁',
     'subject' => '邮件标题',
@@ -73,7 +73,7 @@ $message = [
 ];
 ```
 
-发送模版邮件不需要指定content, 但是需要配置模版名, 即view的值，加入你有一个位于 Yii::$app->mailer->viewPath目录下的 mail-template.php 模版，view 填写 mail-template 就好
+发送模版邮件不需要指定content, 但是需要配置模版名, 即view的值，假如你有一个位于 Yii::$app->mailer->viewPath目录下的 mail-template.php 模版，view 填写 mail-template 就好
 
 #### 批量发送邮件
 
