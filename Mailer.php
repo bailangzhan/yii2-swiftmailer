@@ -6,20 +6,19 @@ use Yii;
 use yii\base\InvalidConfigException;
 
 /**
- * yii2 发送邮件处理类
+ * 发送邮件处理类
  *
- * For example:
+ * Forexample:
  *
  * send a text message
  * 
  * ```php
- *  use bailangzhan\swiftmailer\Mailer;
  *  $message = [
         'to' => 'xxx@qq.com',
         'subject' => 'just a test.',
         'content' => 'This just a test.',
     ];
-    $mailer = new Mailer(Mailer::TYPE_1, $message);
+    $mailer = new Mailer(Mailer::TYPE_1, $messages);
     $result = $mailer->sendMessage();
  * ```
  *
@@ -28,14 +27,15 @@ use yii\base\InvalidConfigException;
  * $message = [
         'to' => 'xxx@qq.com',
         'subject' => 'just a test.',
-        'view' => Yii::$app->mailer->viewPath . 'mail-template',
+        'content' => 'This just a test.',
+        'view' => Yii::$app->mailer->viewPath,
         'params' => [
             'name' => 'xiaoming',
             'age' => 20
         ]
     ];
  * ```
- * params'name and params'age is the corresponding variable inside the view
+ * name and age is the corresponding variable inside the view
  * 
  * Send text messages in bulk
  * ```php
@@ -49,11 +49,6 @@ use yii\base\InvalidConfigException;
                         'to' => 'xxx@qq.com', 
                         'subject' => 'just a test2.',
                         'content' => 'This just a test2.',
-                        'view' => Yii::$app->mailer->viewPath . 'mail-template',
-                        'params' => [
-                            'name' => 'xiaoming',
-                            'age' => 20
-                        ]
                     ]
                 ];
     $mailer = new Mailer(Mailer::TYPE_2, $messages);
@@ -108,7 +103,7 @@ class Mailer
      * send a text message
      * @param  array   $message  refer to $this->message
      */
-    protected function text($message = null)
+    public function text($message = null)
     {
         !$message && $message = $this->message;
         $result = $this->_mailer
@@ -125,7 +120,7 @@ class Mailer
      * Send text messages in bulk
      * @return Array $messages
      */
-    protected function multiText()
+    public function multiText()
     {
         $messages = []; 
         foreach ($this->message as $message) {
@@ -145,7 +140,7 @@ class Mailer
                     break;
                 case self::TYPE_2:
                     $messages = $this->multiText();
-                    $result = $this->sendMultiple($messages);
+                    $result = $this->_mailer->sendMultiple($messages);
                     break;
                 default:
                     break;
@@ -164,7 +159,7 @@ class Mailer
     /**
      * Check the configuration is correct
      */
-    protected function check()
+    public function check()
     {
         $tempMessage = $this->message;
         $multi = current($tempMessage);
@@ -192,7 +187,7 @@ class Mailer
         }
         return $count;
     }
-    protected function singleCheck($message)
+    public function singleCheck($message)
     {
         if (!is_array($message)) {
             throw new InvalidConfigException("Mailer::\$message must be an array, please refer to Mailer::\$message configuration.", 1);
@@ -205,7 +200,7 @@ class Mailer
         }
         return true;
     }
-    protected function checkType()
+    public function checkType()
     {
         if (!in_array($this->type, [self::TYPE_1, self::TYPE_2])) {
             throw new InvalidConfigException("you have not set up Mailer::\$type, please refer to Mailer::\$type configuration.", 1);
