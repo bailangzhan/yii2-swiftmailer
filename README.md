@@ -9,13 +9,13 @@ yii2-swiftmailer
 推荐使用composer进行安装
 
 ```
-$ php composer.phar require bailangzhan/yii2-swiftmailer "@dev"
+$ php composer.phar require bailangzhan/yii2-swiftmailer
 ```
 
 或者添加
 
 ```
-"bailangzhan/yii2-swiftmailer": "@dev"
+"bailangzhan/yii2-swiftmailer": "^1.0"
 ```
 
 到你的`composer.json`文件的`require`中
